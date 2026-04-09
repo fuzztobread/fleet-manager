@@ -9,8 +9,6 @@ const (
 )
 
 // Vehicle is the core domain model.
-// Tags like `json:"id"` tell encoding/json what key name to use
-// when this struct is serialized to/from JSON.
 type Vehicle struct {
 	ID       string `json:"id"`
 	Name     string `json:"name"`
