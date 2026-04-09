@@ -1,5 +1,11 @@
 package vehicle
 
+import "errors"
+
+var (
+	ErrNotFound = errors.New("vehicle not found")
+)
+
 type Status string
 
 const (
