@@ -4,11 +4,11 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
-
+	"fleet-manager/internal/route"
 	"fleet-manager/internal/storage"
 	"fleet-manager/internal/vehicle"
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 )
 
 func main() {
@@ -27,7 +27,10 @@ func main() {
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 
+	routeService := route.NewService()
+
 	r.Mount("/vehicles", vehicle.NewHandler(vehicleService))
+	r.Mount("/routes", route.NewHandler(routeService))
 
 	log.Println("starting fleet-manager on :8080")
 
